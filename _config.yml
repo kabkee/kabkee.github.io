@@ -116,6 +116,12 @@ author:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: mailto:kabkee@live.com
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/kabkee"
+    - label: "Look360.kr"
+      icon: "fas fa-vr-cardboard"
+      url: https://look360.kr
     # - label: "Website"
     #   icon: "fas fa-fw fa-link"
     #   # url: "https://your-website.com"
@@ -125,9 +131,6 @@ author:
     # - label: "Facebook"
     #   icon: "fab fa-fw fa-facebook-square"
     #   # url: "https://facebook.com/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/kabkee"
     # - label: "Instagram"
     #   icon: "fab fa-fw fa-instagram"
     #   # url: "https://instagram.com/"
@@ -135,6 +138,9 @@ author:
 # Site Footer
 footer:
   links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: mailto:kabkee@live.com
     # - label: "Twitter"
     #   icon: "fab fa-fw fa-twitter-square"
     #   # url:
@@ -232,7 +238,8 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
-
+  - jemoji
+  
 # mimic GitHub Pages with --safe
 whitelist:
   - jekyll-paginate
@@ -241,7 +248,10 @@ whitelist:
   - jekyll-feed
   - jekyll-include-cache
 
+emoji:
+  src: "https://github.githubassets.com/images/icons/"
 
+  
 # Archives
 #  Type
 #  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)

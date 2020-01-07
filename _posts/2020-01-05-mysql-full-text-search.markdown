@@ -3,10 +3,13 @@ layout: single
 title:  "MySql Full-text Search 설정"
 toc: true
 toc_label: "목차"
-toc_icon: "cog"
+toc_icon: "list-alt"
 toc_sticky: true
-date:   2020-01-03 23:59:43 +0800
+date:   2020-01-05 23:59:43 +0900
 categories: MySQL
+tags: ['MySQL', 'Full-text search']
+<!-- classes: wide -->
+
 ---
 
 
