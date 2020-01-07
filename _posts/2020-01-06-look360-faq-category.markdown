@@ -7,7 +7,7 @@ toc_icon: "list-alt"
 toc_sticky: true
 date:   2020-01-07 15:54:00 +0900
 categories: LOOK360
-tags: ['LOOK360 개발노트', '게시판 테마']
+tags: ['look360-dev-note', 'bbs-theme']
 <!-- classes: wide -->
 ---
 

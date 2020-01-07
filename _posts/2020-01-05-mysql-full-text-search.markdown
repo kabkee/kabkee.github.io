@@ -7,7 +7,7 @@ toc_icon: "list-alt"
 toc_sticky: true
 date:   2020-01-05 23:59:43 +0900
 categories: MySQL
-tags: ['MySQL', 'Full-text search']
+tags: ['mysql', 'full-text-search']
 <!-- classes: wide -->
 
 ---

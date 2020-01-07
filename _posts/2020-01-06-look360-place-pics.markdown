@@ -7,7 +7,7 @@ toc_icon: "list-alt"
 toc_sticky: true
 date:   2020-01-07 19:54:00 +0900
 categories: LOOK360
-tags: ['LOOK360 개발노트', '장소 사진 관리', 'Admin 전용']
+tags: ['look360-dev-note', 'place-pics', 'admin-only']
 <!-- classes: wide -->
 ---
 
