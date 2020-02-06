@@ -23,6 +23,8 @@ Node가 돌고있는 OS의 시간이 맞지 않아 생긴 문제라는 것을 �
 
 
 ## Timezone 변경이 안된다?
+처음 접한 글이 [CHANGING THE TIMEZONE ON YOUR AZURE WEBAPP / APP SERVICE / FUNCTION](https://kvaes.wordpress.com/2017/01/24/changing-the-timezone-on-your-azure-webapp-app-service-function/)이었고, 설명이 너무 잘 되어있어서 따라 했으나, 원하는대로 서버 시간이 변경되지 않았다.
+
 대부분의 글들이 "WEB_TIMEZONE" 값을 congifure 화면에서 추가하면 된다는 내용을 다루고 있으나. 정상 작동 되지 않는다.
 
 	일반적인 현상은 지역명은 변경되어 보이지만, 시간이 여전히 UTC 0 시간으로 표기됨.
