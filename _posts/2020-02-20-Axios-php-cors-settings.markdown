@@ -20,16 +20,17 @@ Same-Origin이 아닌 경우의 호출을 Cross Doamin이라고 한다.
 Web 개발 방식이 Server side render 방식을 주로 채용하여 사용하는 기존의 방식에서 Client 와 Server 를 구분하는 Front & Back ends 개발이 추세다. 앱 개발이 일반화되면서 Web 또한 하나의 Client로 보는 시각이 생기면서 Web Server와 Backend Server의 구분이 생기면서 Cross Domain 문제가 발생하게 된다.
 이를 해결해 줘야한다.
 
-## CORS 설정
+## CORS 설정을 위한 Headers
 서버에 해당되는 Backend 에서 일반적인 CORS 설정 값은 Header 값을 이용한다. ***일반적으로는*** 아래와 같이 한줄이면 해결된다.
 	
 	Access-Control-Allow-Origin *
-#### CORS 설정을 위한 Header 값들
-* Access-Control-Allow-Origin
-* Access-Control-Allow-Credentials
-* Access-Control-Allow-Methods
-* Access-Control-Allow-Headers
-* Content-type
+
+* CORS 설정을 위한 Header 값들
+	* Access-Control-Allow-Origin
+	* Access-Control-Allow-Credentials
+	* Access-Control-Allow-Methods
+	* Access-Control-Allow-Headers
+	* Content-type
 
 
 ## Axios 사용을 위한 PHP CORS 설정
