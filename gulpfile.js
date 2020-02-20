@@ -6,8 +6,15 @@ const routes = {
     dest: 'assets/img/',
 }
 
-exports.default = () => (
+const imageMin = () => (
     gulp.src(routes.src)
     .pipe(imagemin())
     .pipe(gulp.dest(routes.dest))
-);
+)
+
+const watch = () => {
+    gulp.watch(routes.src, imageMin)
+}
+
+exports.dev = gulp.series([imageMin, watch])
+exports.default = imageMin
