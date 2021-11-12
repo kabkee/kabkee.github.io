@@ -63,13 +63,11 @@ LOOK360 장소관련 사진 관리기능 중 사진 노출 순서 변경 기능�
 
 
 
-## 참고자료
+<!-- ## 참고자료
 * [LOOK360 Admin전용 '장소사진관리' 메뉴][look360-admin-place-pic]
 * [LOOK360 내장소 전용 '장소사진관리' 메뉴][look360-myplace-place-pic]
 
 
 [look360-admin-place-pic]: https://look360.kr/?m=admin&module=PlaceManagement&front=placePicture
 [look360-myplace-place-pic]: https://look360.kr/?r=home&mod=mypage&content=myplace&mode=_myplace_pics
-
-
-
+ -->

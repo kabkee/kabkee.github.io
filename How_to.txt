@@ -1,0 +1,15 @@
+$ gem install jekyll
+$ jekyll new my-awesome-site
+$ cd my-awesome-site
+/my-awesome-site $ jekyll serve
+
+
+ruby는 있는데 bundler가 없다면,
+gem install bundler
+
+sudo gem install rake
+bundle install
+
+
+* 시작
+npm run start
