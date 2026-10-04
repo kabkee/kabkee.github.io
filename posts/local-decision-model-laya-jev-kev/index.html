@@ -1,0 +1,1130 @@
+<!DOCTYPE html><html dir="ltr" lang="ko" class="overflow-y-scroll scroll-smooth"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico"><link rel="canonical" href="https://kabkee.github.io/posts/local-decision-model-laya-jev-kev/"><meta name="generator" content="Astro v7.0.3"><!-- Font: Pretendard (Korean, dynamic subset) for text, Google Sans Code for code --><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><style>@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/2213c1e7fbe06cc7.woff") format("woff"), url("/_astro/fonts/b87f789471b4c602.ttf") format("truetype");font-display:swap;font-weight:300;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/c487dbd9c215141e.woff") format("woff"), url("/_astro/fonts/bb0c016d60298234.ttf") format("truetype");font-display:swap;font-weight:400;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/0976c79a1e97c08d.woff") format("woff"), url("/_astro/fonts/b3e69a4f03324880.ttf") format("truetype");font-display:swap;font-weight:500;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/3c46d5a1dde2929d.woff") format("woff"), url("/_astro/fonts/0ff1dfaf1dff21d0.ttf") format("truetype");font-display:swap;font-weight:600;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/e9aa617e80052f4b.woff") format("woff"), url("/_astro/fonts/d9a5ad8b8018e5de.ttf") format("truetype");font-display:swap;font-weight:700;font-style:italic;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/5056f1a50e5e7744.woff") format("woff"), url("/_astro/fonts/3e4dac0d0220e48a.ttf") format("truetype");font-display:swap;font-weight:300;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/e734307f8c328338.woff") format("woff"), url("/_astro/fonts/ba3036786bf88603.ttf") format("truetype");font-display:swap;font-weight:400;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/dfa89044152f7da4.woff") format("woff"), url("/_astro/fonts/39aec4e7fc7cc077.ttf") format("truetype");font-display:swap;font-weight:500;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/8bbd58b325585200.woff") format("woff"), url("/_astro/fonts/b33609507afd910d.ttf") format("truetype");font-display:swap;font-weight:600;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404";src:url("/_astro/fonts/035035a9ddbd14aa.woff") format("woff"), url("/_astro/fonts/50fcf54bf575f53f.ttf") format("truetype");font-display:swap;font-weight:700;font-style:normal;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:italic;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:300;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:400;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:500;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:600;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}@font-face{font-family:"Google Sans Code-1a30c214885cb404 fallback: Courier New";src:local("Courier New");font-display:swap;font-weight:700;font-style:normal;size-adjust:99.9837%;ascent-override:96.6157%;descent-override:28.6047%;}:root{--font-google-sans-code:"Google Sans Code-1a30c214885cb404","Google Sans Code-1a30c214885cb404 fallback: Courier New",monospace;}</style><!-- Primary meta --><title>Laya로 Jev를 무료로 대체할 수 있을까? 한국어 데이터로 Laya·Jev·Kev·JEV-9B 직접 비교해봤다 | Kabkee.github.io</title><meta name="title" content="Laya로 Jev를 무료로 대체할 수 있을까? 한국어 데이터로 Laya·Jev·Kev·JEV-9B 직접 비교해봤다 | Kabkee.github.io"><meta name="description" content="「Jev 대신 무료·무제한」으로 화제인 Laya를 유료 Jev, 오픈 모델 Kev-4B, 양자화한 JEV-9B와 함께 한국어 분류 300건으로 비교했다. 실서비스 검색 추천 순서에 무료로 붙일 수 있는지 정확도·확신도·속도·비용으로 따져봤다."><meta name="author" content="값기"><link rel="sitemap" href="/sitemap-index.xml"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:site_name" content="Kabkee.github.io"><meta property="og:title" content="Laya로 Jev를 무료로 대체할 수 있을까? 한국어 데이터로 Laya·Jev·Kev·JEV-9B 직접 비교해봤다 | Kabkee.github.io"><meta property="og:description" content="「Jev 대신 무료·무제한」으로 화제인 Laya를 유료 Jev, 오픈 모델 Kev-4B, 양자화한 JEV-9B와 함께 한국어 분류 300건으로 비교했다. 실서비스 검색 추천 순서에 무료로 붙일 수 있는지 정확도·확신도·속도·비용으로 따져봤다."><meta property="og:url" content="https://kabkee.github.io/posts/local-decision-model-laya-jev-kev/"><meta property="og:image" content="https://kabkee.github.io/posts/local-decision-model-laya-jev-kev/index.png"><!-- Twitter / X --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://kabkee.github.io/posts/local-decision-model-laya-jev-kev/"><meta property="twitter:title" content="Laya로 Jev를 무료로 대체할 수 있을까? 한국어 데이터로 Laya·Jev·Kev·JEV-9B 직접 비교해봤다 | Kabkee.github.io"><meta property="twitter:description" content="「Jev 대신 무료·무제한」으로 화제인 Laya를 유료 Jev, 오픈 모델 Kev-4B, 양자화한 JEV-9B와 함께 한국어 분류 300건으로 비교했다. 실서비스 검색 추천 순서에 무료로 붙일 수 있는지 정확도·확신도·속도·비용으로 따져봤다."><meta property="twitter:image" content="https://kabkee.github.io/posts/local-decision-model-laya-jev-kev/index.png"><!-- RSS autodiscovery --><link rel="alternate" type="application/rss+xml" title="Kabkee.github.io" href="https://kabkee.github.io/rss.xml/"><script async src="https://www.googletagmanager.com/gtag/js?id=G-901ZRLBBP3"></script><script>(function(){const client = "";
+const ga4 = "G-901ZRLBBP3";
+
+  // Register once even if ClientRouter re-runs this script on navigation,
+  // otherwise every page view would be counted multiple times.
+  const alreadyInit = window.__adsAnalyticsInit;
+  window.__adsAnalyticsInit = true;
+
+  if (client && !alreadyInit) {
+    document.addEventListener("astro:page-load", () => {
+      const units = document.querySelectorAll(
+        "ins.adsbygoogle:not([data-adsbygoogle-status])"
+      );
+      for (const unit of units) {
+        // Skip units hidden by CSS (e.g. rails on narrow screens):
+        // AdSense throws on zero-width slots.
+        if (unit.offsetWidth === 0) continue;
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch {
+          // An ad failing to load must not break the page.
+        }
+      }
+    });
+  }
+
+  if (ga4 && !alreadyInit) {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+    window.gtag("js", new Date());
+    window.gtag("config", ga4, { send_page_view: false });
+    document.addEventListener("astro:page-load", () => {
+      window.gtag("event", "page_view", {
+        page_location: location.href,
+        page_title: document.title,
+      });
+    });
+  }
+})();</script><!-- Filled at runtime by theme.ts to match the current background colour --><meta name="theme-color" content=""><!-- Extra head content injected by child layouts (e.g. JSON-LD, article meta) --><meta property="og:type" content="article"><meta property="article:published_time" content="2026-10-03T16:30:00.000Z"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Laya로 Jev를 무료로 대체할 수 있을까? 한국어 데이터로 Laya·Jev·Kev·JEV-9B 직접 비교해봤다 | Kabkee.github.io","image":"https://kabkee.github.io/posts/local-decision-model-laya-jev-kev/index.png","datePublished":"2026-10-03T16:30:00.000Z","author":[{"@type":"Person","name":"값기","url":"https://github.com/kabkee"}]}</script><!--
+      Inline FOUC-prevention script: sets data-theme on <html> before
+      the browser paints. Runs synchronously, no defer/async.
+    --><script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const theme = stored ?? (prefersDark ? "dark" : "light");
+        const root = document.firstElementChild;
+        root?.setAttribute("data-theme", theme);
+        root?.classList.toggle("dark", theme === "dark");
+        // Expose value so theme.ts can skip re-detection.
+        window.__theme = { value: theme };
+      })();
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.2i1RQzKf.js"></script><link rel="stylesheet" href="/_astro/Footer.FegcCd92.css"><style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*),[data-astro-transition-scope]{animation:none!important}}
+</style><style>[data-astro-transition-scope="astro-bztu2lml-1"] { view-transition-name: ai; }@layer astro { ::view-transition-old(ai) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(ai) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(ai) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(ai) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-bztu2lml-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-bztu2lml-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-bztu2lml-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-bztu2lml-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-bztu2lml-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-bztu2lml-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-bztu2lml-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-bztu2lml-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-bztu2lml-2"] { view-transition-name: llm; }@layer astro { ::view-transition-old(llm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(llm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(llm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(llm) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-bztu2lml-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-bztu2lml-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-bztu2lml-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-bztu2lml-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-bztu2lml-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-bztu2lml-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-bztu2lml-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-bztu2lml-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head><body class="bg-background font-app text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col"><a id="skip-to-content" href="#main-content" class="bg-background text-accent absolute inset-s-16 -top-full z-50 px-3 py-2 backdrop-blur-lg transition-all focus:top-4">본문으로 건너뛰기</a><header class="app-layout flex flex-col items-center justify-between sm:flex-row"><div class="border-border bg-background relative flex w-full items-baseline justify-between border-b py-4 sm:items-center sm:py-6"><a href="/" class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none">Kabkee.github.io</a><nav id="nav-menu" class="flex w-full flex-col items-center sm:ms-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"><button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="메뉴 열기" aria-expanded="false" aria-controls="menu-items" data-label-open="메뉴 열기" data-label-close="메뉴 닫기"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="hidden" viewBox="0 0 24 24" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" /><path d="M18 6 6 18M6 6l12 12" /></svg><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" viewBox="0 0 24 24" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" /><path d="M4 6h16M7 12h13M10 18h10" /></svg></button><ul id="menu-items" class="[&amp;&gt;li&gt;a]:hover:text-accent mt-4 hidden w-44 grid-cols-2 place-content-center gap-2 sm:mt-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0 sm:[&amp;&gt;li]:h-8 [&amp;&gt;li&gt;a]:block [&amp;&gt;li&gt;a]:px-4 [&amp;&gt;li&gt;a]:py-3 [&amp;&gt;li&gt;a]:text-center [&amp;&gt;li&gt;a]:font-medium sm:[&amp;&gt;li&gt;a]:px-2 sm:[&amp;&gt;li&gt;a]:py-1"><li class="col-span-2"><a href="/posts/" class="active-nav">글 목록</a></li><li class="col-span-2"><a href="/tags/">태그</a></li><li class="col-span-2"><a href="/projects/">프로젝트</a></li><li class="col-span-2"><a href="/about/">소개</a></li><li class="col-span-2"><a href="/archives/" title="아카이브" aria-label="아카이브" class="group inline-flex items-center gap-1 hover:text-accent focus-outline flex size-full justify-center p-3 sm:relative sm:size-8 sm:p-0"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="hidden sm:absolute sm:top-1/2 sm:left-1/2 sm:block sm:size-6 sm:-translate-x-1/2 sm:-translate-y-1/2" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12h4" /></svg><span class="sm:sr-only">아카이브</span></a></li><li class="col-span-1 flex items-center justify-center"><a href="/search/" title="검색" aria-label="검색" class="group inline-flex items-center gap-1 hover:text-accent focus-outline relative size-8"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="absolute top-1/2 left-1/2 size-6 -translate-x-1/2 -translate-y-1/2" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 10a7 7 0 1 0 14 0 7 7 0 1 0-14 0M21 21l-6-6" /></svg><span class="sr-only">검색</span></a></li><li class="col-span-1 flex items-center justify-center"><button id="theme-btn" class="focus-outline hover:[&amp;&gt;svg]:stroke-accent relative size-12 p-4 sm:size-8" title="테마 전환" aria-label="auto" aria-live="polite"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="absolute top-[50%] left-[50%] translate-[-50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z" /></svg><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="absolute top-[50%] left-[50%] translate-[-50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M14.828 14.828a4 4 0 1 0-5.656-5.656 4 4 0 0 0 5.656 5.656M6.343 17.657l-1.414 1.414M6.343 6.343 4.929 4.929M17.657 6.343l1.414-1.414M17.657 17.657l1.414 1.414M4 12H2M12 4V2M20 12h2M12 20v2" /></svg></button></li></ul></nav></div></header><script type="module">function e(){let e=document.querySelector(`#menu-btn`),t=document.querySelector(`#menu-items`),n=document.querySelector(`#menu-icon`),r=document.querySelector(`#close-icon`);if(!e||!t||!n||!r)return;let i=e.dataset.labelOpen??`Open menu`,a=e.dataset.labelClose??`Close menu`;e.addEventListener(`click`,()=>{let o=e.getAttribute(`aria-expanded`)===`true`;e.setAttribute(`aria-expanded`,o?`false`:`true`),e.setAttribute(`aria-label`,o?i:a),t.classList.toggle(`hidden`),t.classList.toggle(`grid`),n.classList.toggle(`hidden`),r.classList.toggle(`hidden`)})}function t(){let e=document.getElementById(`skip-to-content`);e&&e.addEventListener(`click`,e=>{if(e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||e.button!==0)return;e.preventDefault();let t=document.getElementById(`main-content`);t&&(t.setAttribute(`tabindex`,`-1`),t.addEventListener(`blur`,()=>t.removeAttribute(`tabindex`),{once:!0}),t.focus(),t.scrollIntoView({behavior:`smooth`}))})}e(),document.addEventListener(`astro:after-swap`,e),t(),document.addEventListener(`astro:after-swap`,t);</script><div class="app-layout flex items-center justify-start"><a id="back-button" href="/" class="group inline-flex items-center gap-1 hover:text-accent focus-outline hover:text-foreground/75 -ms-2 mt-8 mb-2"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 rtl:rotate-180" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m15 6-6 6 6 6" /></svg><span>뒤로 가기</span></a></div><script type="module">function e(){let e=document.querySelector(`#back-button`),t=sessionStorage.getItem(`backUrl`);t&&e&&(e.href=t)}document.addEventListener(`astro:page-load`,e),e();</script><main id="main-content" class="app-layout" data-pagefind-body><h1 style="view-transition-name:local-decision-model-laya-jev-kev" class="text-accent inline-block text-2xl font-bold sm:text-3xl">Laya로 Jev를 무료로 대체할 수 있을까? 한국어 데이터로 Laya·Jev·Kev·JEV-9B 직접 비교해봤다</h1><div class="my-2 flex items-center gap-2"><div class="text-muted-foreground flex items-center gap-x-2"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 min-w-5.5" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM16 3v4M8 3v4M4 11h16M7 14h.013M10.01 14h.005M13.01 14h.005M16.015 14h.005M13.015 17h.005M7.01 17h.005M10.01 17h.005" /></svg><time class="text-sm sm:text-base" datetime="2026-10-03T16:30:00.000Z">2026년 10월 4일</time></div><span aria-hidden="true" class="text-muted-foreground max-sm:hidden hidden">|</span></div><article id="article" class="mt-8 w-full app-prose max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"><blockquote><p><strong>2026년 10월 3~4일, 하루 동안 직접 테스트한 기록이다.</strong> 정확도는 내가 가진 한국어 데이터 기준이고, 모든 모델을 별도 학습 없이 받은 그대로 돌린 결과다. 데이터와 과제가 다르면 결과도 달라질 수 있다.</p></blockquote>
+<h2 id="목차">목차</h2>
+<p></p><details><summary>목차 펼치기</summary><p></p>
+<ul>
+<li><a href="#%EC%9A%94%EC%95%BD">요약</a></li>
+<li><a href="#%EC%99%9C-%EC%9D%B4-%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%ED%96%88%EB%82%98">왜 이 테스트를 했나</a></li>
+<li><a href="#%EA%B2%B0%EC%A0%95-%EB%AA%A8%EB%8D%B8%EC%9D%B4%EB%9E%80">결정 모델이란</a></li>
+<li><a href="#%EB%B9%84%EA%B5%90%ED%95%9C-%EB%AA%A8%EB%8D%B8">비교한 모델</a></li>
+<li><a href="#%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%99%98%EA%B2%BD%EA%B3%BC-%EB%B0%A9%EB%B2%95">테스트 환경과 방법</a></li>
+<li><a href="#%EA%B2%B0%EA%B3%BC-1-%EC%A0%95%ED%99%95%EB%8F%84%EC%99%80-%EC%86%8D%EB%8F%84">결과 1: 정확도와 속도</a></li>
+<li><a href="#%EA%B2%B0%EA%B3%BC-2-%ED%99%95%EC%8B%A0%EB%8F%84%EB%A5%BC-%EB%AF%BF%EC%9D%84-%EC%88%98-%EC%9E%88%EB%8A%94%EA%B0%80">결과 2: 확신도를 믿을 수 있는가</a></li>
+<li><a href="#%EA%B2%B0%EA%B3%BC-3-jev%EC%99%80-%EC%96%BC%EB%A7%88%EB%82%98-%EA%B0%99%EC%9D%80-%EB%8B%B5%EC%9D%84-%EB%82%B4%EB%82%98">결과 3: Jev와 얼마나 같은 답을 내나</a></li>
+<li><a href="#jev-%EC%8B%B8%EC%A7%80%EB%A7%8C-%EC%9C%A0%EB%A3%8C-%EB%AC%B4%EB%A3%8C%EB%8A%94-%EC%96%B8%EC%A0%9C%EA%B9%8C%EC%A7%80%EC%9D%BC%EC%A7%80-%EB%AA%A8%EB%A5%B8%EB%8B%A4">Jev: 싸지만 유료, 무료는 언제까지일지 모른다</a></li>
+<li><a href="#9b-%EB%AA%A8%EB%8D%B8%EC%9D%80-%EB%82%B4-gpu%EC%97%90%EC%84%9C-%EB%8F%8C%EC%95%84%EA%B0%88%EA%B9%8C-%EC%96%91%EC%9E%90%ED%99%94-%EC%8B%A4%EC%B8%A1">9B 모델은 내 GPU에서 돌아갈까: 양자화 실측</a>
+<ul>
+<li><a href="#%EC%9B%90%EB%B3%B8%EC%9D%B4%EB%82%98-%EB%91%90-%EB%AA%A8%EB%8D%B8%EC%9D%84-%ED%95%A8%EA%BB%98-%EB%8F%8C%EB%A6%AC%EB%A0%A4%EB%A9%B4">원본이나 두 모델을 함께 돌리려면</a></li>
+</ul>
+</li>
+<li><a href="#%EA%B7%B8%EB%9E%98%EC%84%9C-%EA%B2%80%EC%83%89-%EC%B6%94%EC%B2%9C%EC%97%90-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%93%B0%EA%B8%B0%EB%A1%9C-%ED%96%88%EB%82%98">그래서 검색 추천에 어떻게 쓰기로 했나</a>
+<ul>
+<li><a href="#%EB%B0%A4%EC%97%90-%EB%AF%B8%EB%A6%AC-%EA%B3%84%EC%82%B0%ED%95%B4-%EB%91%90%EB%8A%94-%EA%B2%83">밤에 미리 계산해 두는 것</a></li>
+<li><a href="#%EA%B2%80%EC%83%89%ED%95%A0-%EB%95%8C-%EC%B6%94%EC%B2%9C-%EB%AA%A9%EB%A1%9D-%EC%88%9C%EC%84%9C%EC%97%90-%EB%B0%98%EC%98%81%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95">검색할 때 추천 목록 순서에 반영하는 방법</a></li>
+<li><a href="#%EB%AA%A8%EB%93%A0-%EA%B2%80%EC%83%89%EC%96%B4%EB%A5%BC-%EB%AF%B8%EB%A6%AC-%EC%A4%80%EB%B9%84%ED%95%B4%EC%95%BC-%ED%95%98%EC%A7%80-%EC%95%8A%EB%82%98">모든 검색어를 미리 준비해야 하지 않나?</a></li>
+<li><a href="#%EC%9D%B4%EB%9F%B0-%EA%B3%B3%EC%97%90%EB%8F%84-%EC%93%B8-%EC%88%98-%EC%9E%88%EB%8B%A4">이런 곳에도 쓸 수 있다</a></li>
+</ul>
+</li>
+<li><a href="#%EC%A0%95%EB%A6%AC-%EB%88%84%EA%B5%AC%EC%97%90%EA%B2%8C-%EB%AC%B4%EC%97%87%EC%9D%B4-%EB%A7%9E%EC%9D%84%EA%B9%8C">정리: 누구에게 무엇이 맞을까</a></li>
+<li><a href="#%ED%95%9C%EA%B3%84">한계</a></li>
+<li><a href="#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a></li>
+</ul>
+<p></p></details><p></p>
+<h2 id="요약">요약</h2>
+<ul>
+<li><strong>Laya는 무료·무제한이 맞지만, 한국어 분류 정확도는 Jev에 크게 못 미쳤다.</strong> 같은 300건에서 Laya 41.0%, Jev 73.3%였다.</li>
+<li>더 큰 문제는 <strong>확신도</strong>였다. Laya가 «80% 이상 확신한다»고 한 답도 절반가량 틀렸다.</li>
+<li>로컬 오픈 모델 <strong>Kev-4B</strong>(74.7%)와 <strong>JEV-9B 8bit</strong>(72.3%)는 <strong>유료 Jev(73.3%)와 같은 수준</strong>이었다. 300건 표본의 오차가 ±5%p라 1~2%p 차이는 의미가 없다.</li>
+<li>확신도는 오히려 로컬 모델이 더 믿을 만했다. 가장 확신한 답 상위 30%만 보면 Kev-4B 99%, JEV-9B 96%, Jev 89%가 맞았다.</li>
+<li>Jev를 따라 배운 <strong>JEV-9B</strong>는 원본(약 18GB)이 내 12GB GPU에 들어가지 않았지만, <strong>8bit로 줄이자 10.4GB로 들어갔다.</strong> 속도는 Kev-4B보다 3~7배 빨랐다.</li>
+<li>결론은 <strong>Kev-4B로 하루 한 번 미리 계산해 두는 캐시 방식</strong>이다. 무료이면서, 확신하는 답을 거의 믿을 수 있기 때문이다.</li>
+</ul>
+<h2 id="왜-이-테스트를-했나">왜 이 테스트를 했나</h2>
+<p>나는 360° VR로 장소를 둘러보는 서비스를 운영하고 있다. 이 서비스의 검색창에 이런 기능을 붙이고 싶었다.</p>
+<ul>
+<li>사용자가 «부산 바다 카페»라고 검색하면, 이게 «카페»를 찾는 검색이라는 걸 알아채고 <strong>카페 콘텐츠를 추천 목록 위쪽으로 올린다.</strong></li>
+<li>콘텐츠 이름에 «카페»라는 단어가 없어도, 카페로 분류된 콘텐츠라면 찾아 준다.</li>
+</ul>
+<p>이걸 하려면 검색어와 콘텐츠를 «카테고리」로 판단해 주는 무언가가 필요하다. 매번 ChatGPT 같은 LLM을 부르면 느리고, 사용량만큼 비용이 계속 나간다.</p>
+<p>그러던 중 유튜브에서 Laya를 봤다. «유료 Jev 대신 Laya를 쓰면 무료로, 무제한으로 쓸 수 있다»는 내용이 많았고, GitHub 별이 3만 개가 넘을 만큼 화제였다. <strong>실서비스에 조금이라도 도움이 되면서 무료로 붙일 수 있다면 더없이 좋은 기회</strong>라고 생각했다. 그래서 정말 그런지 내 데이터로 직접 확인해 보기로 했다.</p>
+<h2 id="결정-모델이란">결정 모델이란</h2>
+<p>ChatGPT 같은 LLM이 글을 «생성»한다면, 결정 모델은 정해진 형식의 질문에 <strong>답과 확률</strong>을 한 번의 계산으로 돌려준다.</p>
+<ul>
+<li>«이 콘텐츠는 A·B·C 중 어디에 속하나?» → <code>B, 확률 0.93</code></li>
+<li>«이 검색어는 카페를 찾는 것인가?» → <code>예, 확률 0.98</code></li>
+</ul>
+<p>글을 길게 생성하지 않아서 빠르고 싸다. 그리고 <strong>확률이 같이 나오는 것</strong>이 핵심이다. 확률이 높은 답은 자동으로 쓰고, 낮은 답은 쓰지 않거나 사람이 보게 하는 구조를 만들 수 있다. 그래서 확률을 믿을 수 있는지가 정확도만큼 중요하다.</p>
+<h2 id="비교한-모델">비교한 모델</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>모델</th><th>만든 곳</th><th>형태</th><th>크기</th><th>비용</th><th>인기도 (2026-10-03)</th></tr></thead><tbody><tr><td><strong>Jev</strong> (<code>jev-1.13</code>)</td><td>TypeSafe AI</td><td>클라우드 API</td><td>비공개</td><td>유료. 무료판 <code>jev-1.13-free</code> 는 기간 한정</td><td>-</td></tr><tr><td><strong>Laya</strong></td><td>오픈소스</td><td>로컬 (ModernBERT 인코더)</td><td>421M</td><td>무료 (Apache 2.0)</td><td>GitHub ⭐ 약 3.0만</td></tr><tr><td><strong>Kev-4B</strong></td><td>오픈소스 (jaredpalmer)</td><td>로컬 (Qwen3.5-4B + LoRA)</td><td>4B</td><td>무료</td><td>GitHub ⭐ 약 8.4천</td></tr><tr><td><strong>JEV-9B</strong></td><td>autotrust</td><td>로컬 (Qwen3.5-9B + Jev 증류 어댑터)</td><td>9B, 원본 약 18GB</td><td>무료</td><td>HF 다운로드 약 1.2만</td></tr><tr><td>Tev1-4B</td><td>Together AI</td><td>로컬 (Ollama)</td><td>4B</td><td>무료</td><td>GitHub ⭐ 약 200</td></tr></tbody></table>
+<ul>
+<li><strong>JEV-9B</strong>는 Jev의 답 약 50만 건을 따라 배우도록 학습한 모델로, Jev와 같은 답을 고르는 비율이 90%라고 공개돼 있다. «Jev와 거의 차이 없는 무료 모델»로 알려진 것이 이 모델이다.</li>
+<li>공개 벤치마크는 출처마다 엇갈린다. Laya 쪽은 영어 벤치마크에서 Laya 76.6%, Jev 72.7%로 Laya가 앞선다고 소개한다. 반면 같은 입력으로 비교한 커뮤니티 벤치마크에서는 Jev 0.907, Laya 0.686이었다.</li>
+<li>Tev1은 선택지를 최대 24개까지만 받아서, 31개 중에 고르는 이번 과제에는 맞지 않아 제외했다.</li>
+</ul>
+<h2 id="테스트-환경과-방법">테스트 환경과 방법</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>항목</th><th>내용</th></tr></thead><tbody><tr><td>로컬 모델 실행</td><td>집에 있는 데스크톱 PC. <strong>RTX 3060 12GB</strong>, RAM 32GB, Windows(WSL)</td></tr><tr><td>호출</td><td>다른 컴퓨터에서 VPN(tailscale)으로 API 호출</td></tr><tr><td>Jev</td><td>클라우드 API (<code>jev-1.13-free</code>)</td></tr><tr><td>데이터</td><td>내가 운영하는 서비스의 <strong>한국어 장소 콘텐츠 300건</strong> (무작위 추출, 모든 모델에 같은 300건)</td></tr><tr><td>과제</td><td>제목·태그·설명을 보고 <strong>대분류 31개 중 하나</strong> 고르기</td></tr><tr><td>정답</td><td>서비스에서 이미 쓰고 있는 분류값</td></tr><tr><td>학습</td><td>없음. 모든 모델을 받은 그대로 사용</td></tr></tbody></table>
+<p>대분류마다 하위 분류 이름을 설명으로 붙였다(예: «학교: 초등학교, 중학교, 고등학교, 대학교…»). 질문 방식은 두 가지를 썼다.</p>
+<ul>
+<li><strong>1단계</strong>: 31개 대분류를 한 번에 묻는다.</li>
+<li><strong>2단계</strong>: 먼저 7개 묶음(숙박·식음 / 상업·서비스 / 문화·역사·종교 / 교육 / 공공 / 자연·관광·레저 / 기타) 중 하나를 고르고, 그 묶음 안의 대분류 중 하나를 고른다. 1단계 확신이 70% 미만이면 상위 2개 묶음을 합쳐서 묻는다. JEV-9B는 선택지를 16개까지만 받아서 2단계로만 측정했다.</li>
+</ul>
+<h2 id="결과-1-정확도와-속도">결과 1: 정확도와 속도</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>모델 · 질문 방식</th><th>정확도</th><th>한 건 응답 시간 (중간값)</th><th>GPU 메모리</th></tr></thead><tbody><tr><td>Laya, 1단계</td><td>41.0%</td><td><strong>28ms</strong></td><td>약 1.7GB</td></tr><tr><td>Laya, 2단계</td><td>38.7%</td><td>48ms</td><td>약 1.7GB</td></tr><tr><td>Jev, 1단계 (설명 8개)</td><td>73.7%</td><td>802ms</td><td>클라우드</td></tr><tr><td>Jev, 1단계</td><td>73.3%</td><td>764ms</td><td>클라우드</td></tr><tr><td><strong>Kev-4B, 1단계</strong></td><td><strong>74.7%</strong></td><td>3,876ms</td><td>약 11.7GB</td></tr><tr><td>Kev-4B, 2단계</td><td>73.0%</td><td>1,921ms</td><td>약 11.7GB</td></tr><tr><td>JEV-9B 4bit, 2단계</td><td>70.3%</td><td>508ms</td><td>7.6GB</td></tr><tr><td>JEV-9B 8bit, 2단계</td><td>72.3%</td><td>584ms</td><td>10.4GB</td></tr></tbody></table>
+<ul>
+<li>유튜브의 «Laya가 Jev를 대체한다»는 이야기와 달리, 한국어 데이터에서는 <strong>Jev가 Laya보다 30%p 이상 정확했다.</strong> Laya는 질문 방식을 바꿔도 오르지 않았다(41.0% → 38.7%). 질문 방식이 아니라 모델 자체의 한계로 보인다.</li>
+<li><strong>Kev-4B·Jev·Kev-4B 2단계·JEV-9B 8bit 네 개는 사실상 같은 수준이다.</strong> 300건 표본의 95% 신뢰구간이 ±5%p라서, 74.7%와 72.3%의 차이는 우연으로도 충분히 생긴다. «Kev가 Jev를 이겼다»보다 <strong>«무료 로컬 모델이 유료 Jev를 따라잡았다»</strong> 가 정확하다.</li>
+<li>JEV-9B는 정확도는 Kev와 비슷하면서 <strong>속도가 3~7배 빨랐다.</strong></li>
+</ul>
+<p>처음 측정할 때는 내 실수가 있었다. 선택지 설명을 앞에서 8개까지만 넣는 바람에 «학교» 설명에서 «대학교»가 잘려 나갔다. 이때 Kev-4B 1단계는 68.3%였는데, 설명을 전부 넣자 74.7%로 올랐다. 2단계는 더 심해서 48.0%까지 떨어졌다가 73.0%로 회복했다. <strong>로컬 결정 모델은 선택지 설명을 얼마나 잘 써 주느냐에 따라 결과가 크게 달라진다.</strong></p>
+<p>반면 Jev는 설명을 8개만 줬을 때(73.7%)와 전부 줬을 때(73.3%)가 거의 같았다. 설명이 부족해도 스스로 잘 메우는 쪽이다.</p>
+<h2 id="결과-2-확신도를-믿을-수-있는가">결과 2: 확신도를 믿을 수 있는가</h2>
+<p>실서비스에서는 «확신이 높은 답만 자동으로 쓰고 나머지는 쓰지 않는다»가 기본이다. 그래서 확신도별 정확도를 따로 봤다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>모델 · 질문 방식</th><th>확신 80% 이상 답의 정확도 (그런 답의 비율)</th><th>확신 90% 이상 답의 정확도 (그런 답의 비율)</th></tr></thead><tbody><tr><td>Laya, 1단계</td><td>49.4% (55%)</td><td>51.5% (45%)</td></tr><tr><td>Laya, 2단계</td><td>60.9% (46%)</td><td>60.2% (28%)</td></tr><tr><td>Jev, 1단계 (설명 8개)</td><td>81.3% (73%)</td><td>82.4% (51%)</td></tr><tr><td>Jev, 1단계</td><td>83.3% (84%)</td><td>85.0% (78%)</td></tr><tr><td><strong>Kev-4B, 1단계</strong></td><td><strong>95.5%</strong> (44%)</td><td><strong>99.0%</strong> (32%)</td></tr><tr><td>Kev-4B, 2단계</td><td>95.1% (48%)</td><td>95.4% (22%)</td></tr><tr><td>JEV-9B 4bit, 2단계</td><td>85.9% (66%)</td><td>91.1% (52%)</td></tr><tr><td>JEV-9B 8bit, 2단계</td><td>86.8% (68%)</td><td>88.2% (56%)</td></tr></tbody></table>
+<p>모델마다 확신을 주는 «성격»이 달라서, 같은 80%라도 의미가 다르다. 그래서 <strong>각 모델이 가장 확신한 답을 같은 비율만큼 잘라서</strong> 다시 비교했다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>가장 확신한 상위</th><th>Kev-4B 1단계</th><th>Kev-4B 2단계</th><th>JEV-9B 8bit</th><th>Jev</th></tr></thead><tbody><tr><td>20%</td><td><strong>98%</strong></td><td>95%</td><td>95%</td><td>88%</td></tr><tr><td>30%</td><td><strong>99%</strong></td><td>96%</td><td>96%</td><td>89%</td></tr><tr><td>50%</td><td>94%</td><td>94%</td><td>93%</td><td>93%</td></tr><tr><td>70%</td><td>87%</td><td>88%</td><td>87%</td><td>89%</td></tr></tbody></table>
+<ul>
+<li><strong>Laya는 확신해도 틀린다.</strong> 90% 이상 확신한 답도 절반 가까이 틀렸다. «서울역사박물관»을 확률 1.0으로 «도서관»이라고 답하는 식이다. 확신도로 걸러 쓰는 구조를 만들 수 없다.</li>
+<li><strong>확신이 높은 구간에서는 로컬 모델이 Jev보다 정확했다.</strong> Jev는 가장 확신한 답 상위 20%에서도 10건 중 1건 넘게 틀렸다.</li>
+<li><strong>Kev-4B는 확신을 아껴 준다.</strong> 90% 이상 확신한 답은 99%가 맞았다. 대신 그렇게 확신하는 답이 전체의 32%로 적다.</li>
+<li><strong>JEV-9B는 확신을 후하게 준다.</strong> 그래서 같은 품질을 원하면 기준선을 더 높여야 한다. JEV-9B 8bit는 <strong>95% 이상</strong>만 쓰면 정확도 95.1%에 전체의 48%를 처리했다. Kev-4B 2단계를 80% 이상으로 썼을 때(95.1%, 48%)와 똑같다.</li>
+</ul>
+<h2 id="결과-3-jev와-얼마나-같은-답을-내나">결과 3: Jev와 얼마나 같은 답을 내나</h2>
+<p>«Jev 대신 쓸 수 있나»를 보려고, 각 모델이 Jev와 같은 답을 고른 비율도 쟀다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>모델 · 질문 방식</th><th>Jev와 같은 답</th></tr></thead><tbody><tr><td>Laya, 1단계</td><td>40.7%</td></tr><tr><td>Laya, 2단계</td><td>44.0%</td></tr><tr><td>Kev-4B, 2단계</td><td>85.3%</td></tr><tr><td>JEV-9B 4bit, 2단계</td><td>85.7%</td></tr><tr><td><strong>Kev-4B, 1단계</strong></td><td><strong>87.7%</strong></td></tr><tr><td><strong>JEV-9B 8bit, 2단계</strong></td><td><strong>88.0%</strong></td></tr></tbody></table>
+<p>위 표는 Jev «설명 8개» 측정과 비교한 값이다. 설명을 전부 준 Jev와 비교하면 JEV-9B 8bit 90.0%, Kev-4B 1단계 88.7%, Kev-4B 2단계 86.3%로 순서는 같았다.</p>
+<p>Jev를 흉내 내도록 학습한 JEV-9B와, 그런 학습을 하지 않은 Kev-4B가 Jev와 비슷한 정도로 같은 답을 냈다.</p>
+<h2 id="jev-싸지만-유료-무료는-언제까지일지-모른다">Jev: 싸지만 유료, 무료는 언제까지일지 모른다</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>구분</th><th>내용</th></tr></thead><tbody><tr><td>유료 <code>jev-1.13</code></td><td>입력 100만 토큰당 약 $0.042, 출력은 무료 (공개 가격 기준)</td></tr><tr><td>무료 <code>jev-1.13-free</code></td><td>OpenCode Zen에서 기간 한정으로 제공. 종료일은 공개되지 않았다</td></tr><tr><td>실제로 막힌 한도</td><td>내 계정에서는 <strong>하루 약 317번</strong> 호출한 뒤 429(요청 한도 초과)로 막혔다</td></tr><tr><td>응답 시간</td><td>한 건에 약 0.8초 (인터넷 경유)</td></tr></tbody></table>
+<p>정확도만 보면 Jev는 훌륭하다. 하지만 하루 317번으로는 검색창 같은 서비스 기능을 감당할 수 없고, 무료판은 언제 끝날지 모른다. 서비스에 넣는다면 결국 유료로 넘어가야 한다.</p>
+<h2 id="9b-모델은-내-gpu에서-돌아갈까-양자화-실측">9B 모델은 내 GPU에서 돌아갈까: 양자화 실측</h2>
+<p>JEV-9B 원본은 약 18GB라 RTX 3060(12GB)에 그대로는 들어가지 않는다. 그래서 모델을 줄여서(양자화) 올려 봤다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>방법</th><th>GPU 메모리</th><th>RTX 3060에서</th><th>정확도</th><th>응답 시간</th></tr></thead><tbody><tr><td>원본 (bf16)</td><td>약 18GB</td><td>안 들어간다</td><td>측정 못 함</td><td>-</td></tr><tr><td><strong>8bit 양자화</strong></td><td><strong>10.4GB</strong></td><td><strong>들어간다</strong></td><td>72.3%</td><td>584ms</td></tr><tr><td>4bit 양자화</td><td>7.6GB</td><td>들어간다</td><td>70.3%</td><td>508ms</td></tr></tbody></table>
+<ul>
+<li><strong>4bit와 8bit의 답이 94.3% 같았다.</strong> 정확도 차이도 2%p뿐이라, 줄여도 손실이 작았다.</li>
+<li>원본과 직접 비교하지는 못했다. 다만 8bit에서 4bit로 절반을 더 줄여도 이 정도라면, 8bit와 원본의 차이는 더 작을 것으로 본다.</li>
+<li>양자화하면 판정 확률이 망가지지 않을까 걱정했는데, 이번 데이터에서는 정상적으로 동작했다.</li>
+</ul>
+<h3 id="원본이나-두-모델을-함께-돌리려면">원본이나 두 모델을 함께 돌리려면</h3>
+<p>12GB GPU에는 한 번에 한 모델만 올릴 수 있다. Kev-4B(약 11.7GB)와 JEV-9B 8bit(10.4GB)를 같이 쓰거나 JEV-9B 원본을 쓰려면 더 큰 메모리가 필요하다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>방법</th><th>메모리</th><th>대략적인 비용</th><th>메모</th></tr></thead><tbody><tr><td><strong>RTX 3090 중고</strong></td><td>24GB</td><td>약 100~180만 원 (그래픽카드만)</td><td>일반 PC 조립으로 가능한 가장 싼 방법. 전력 소모가 커서 파워 용량을 확인해야 한다</td></tr><tr><td>RTX 4090 중고</td><td>24GB</td><td>약 360~400만 원</td><td>3090보다 빠르다</td></tr><tr><td>RTX 5090</td><td>32GB</td><td>중고 거래가 약 770~880만 원대가 많다</td><td>원본 9B와 4B를 함께 올릴 여유가 있다</td></tr><tr><td>Mac mini (M4 Pro)</td><td>48GB / 64GB 통합 메모리</td><td>약 269만 원 / 약 299만 원 (출시 공식가 기준)</td><td>조립 없이 살 수 있다. 결정 모델이 Mac에서 얼마나 빠른지는 직접 재보지 않았다</td></tr></tbody></table>
+<ul>
+<li><strong>일반 PC 조립으로도 충분히 준비할 수 있다.</strong> 이미 데스크톱이 있다면 RTX 3090 중고로 그래픽카드만 바꾸는 것이 가장 싸다.</li>
+<li>가격은 2026년 9~10월 기준으로 조사한 대략적인 값이라 시기와 상태에 따라 차이가 크다.</li>
+</ul>
+<h2 id="그래서-검색-추천에-어떻게-쓰기로-했나">그래서 검색 추천에 어떻게 쓰기로 했나</h2>
+<p>가장 정확하고 무료인 것은 Kev-4B였다. 하지만 한 건에 2~4초가 걸려서, 사용자가 글자를 칠 때마다 답해야 하는 검색창에 바로 부를 수는 없다. JEV-9B 8bit도 0.6초라 자동완성에는 느리다.</p>
+<p>그래서 <strong>실시간으로 묻지 않고, 하루 한 번 밤에 미리 계산해 두는 캐시 방식</strong>을 택했다.</p>
+<h3 id="밤에-미리-계산해-두는-것">밤에 미리 계산해 두는 것</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="text"><code><span class="line"><span>[매일 밤, Kev-4B 1단계로 일괄 계산]</span></span>
+<span class="line"><span>  ① 콘텐츠마다 카테고리를 미리 붙여 둔다 (콘텐츠 수만큼)</span></span>
+<span class="line"><span>  ② 자주 들어오는 검색어마다 «무엇을 찾는 검색인지»(의도)를 미리 계산해 둔다</span></span>
+<span class="line"><span>  ③ 확신 90% 이상인 답만 저장한다 → 저장된 답은 약 99%가 정답</span></span></code></pre>
+<h3 id="검색할-때-추천-목록-순서에-반영하는-방법">검색할 때 추천 목록 순서에 반영하는 방법</h3>
+<p>«부산 바다 카페»를 검색했다고 해 보자.</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="--shiki-light:#24292eff;--shiki-dark:#d6deeb;--shiki-light-bg:#ffffff;--shiki-dark-bg:#011627; overflow-x: auto;--file-name-offset: -0.75rem;" tabindex="0" data-language="text"><code><span class="line"><span>① 검색어 의도 조회 (캐시, 약 1ms)</span></span>
+<span class="line"><span>     "부산 바다 카페" → 카페 (확신 0.97)</span></span>
+<span class="line"><span>② 지역은 사전으로 뽑는다</span></span>
+<span class="line"><span>     "부산" → 부산광역시   ← 지역명은 문자열로 정확히 뽑을 수 있어서 모델을 쓰지 않는다</span></span>
+<span class="line"><span>③ 기존 검색으로 후보를 뽑는다</span></span>
+<span class="line"><span>     키워드 + 지역 필터로 상위 30개</span></span>
+<span class="line"><span>④ 순서를 다시 매긴다</span></span>
+<span class="line"><span>     후보 중 카테고리가 «카페»로 분류된 콘텐츠에 가산점 → 위로 올린다</span></span>
+<span class="line"><span>⑤ 추천 목록에 보여 준다</span></span></code></pre>
+<ul>
+<li>콘텐츠 이름에 «카페»가 없어도, 밤에 «카페»로 분류해 둔 콘텐츠라면 위로 올라온다.</li>
+<li>캐시에 없는 새 검색어는 카테고리 이름 사전으로 단순 매칭하고(예: «대학» → 학교), 그 검색어를 다음 날 밤 계산 대상에 넣는다. 다음 날부터는 캐시로 처리된다.</li>
+<li>의도 판단이 틀리면 엉뚱한 콘텐츠가 위로 올라간다. 그래서 <strong>확신 90% 이상만 쓰는 것</strong>이 중요하고, 이 조건에서 Kev-4B가 가장 믿을 만했다.</li>
+</ul>
+<h3 id="모든-검색어를-미리-준비해야-하지-않나">모든 검색어를 미리 준비해야 하지 않나?</h3>
+<p>그렇지 않다. 검색어는 소수가 대부분을 차지했다. 테스트 서버의 검색 기록을 세어 보니 이랬다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>상위 검색어</th><th>전체 검색 중 비율</th></tr></thead><tbody><tr><td>10개</td><td>53.0%</td></tr><tr><td>100개</td><td>89.4%</td></tr><tr><td>300개</td><td><strong>97.9%</strong></td></tr></tbody></table>
+<p>인기 검색어 수백 개만 매일 밤 계산해 두면 대부분의 검색이 캐시로 처리된다. 그리고 모델 서버가 꺼져 있어도 저장해 둔 결과로 검색은 그대로 동작한다.</p>
+<h3 id="이런-곳에도-쓸-수-있다">이런 곳에도 쓸 수 있다</h3>
+<ul>
+<li><strong>쇼핑몰</strong>: «여름 원피스», «출근용 가방» 같은 검색어의 의도를 상품 카테고리로 바꿔 추천 순서에 반영</li>
+<li><strong>커뮤니티·게시판</strong>: 새 글이 올라오면 밤에 게시판 분류를 제안하고, 확신 높은 것만 자동 분류</li>
+<li><strong>고객 문의</strong>: 문의 내용을 «결제·배송·환불·기타»로 나눠 담당자에게 자동 배정, 확신 낮은 것만 사람이 분류</li>
+</ul>
+<p>어느 경우든 핵심은 같다. <strong>실시간이 꼭 필요하지 않다면 밤에 미리 계산하고, 확신이 높은 답만 쓴다.</strong> 그러면 무료 로컬 모델로도 충분히 서비스에 붙일 수 있다.</p>
+<h2 id="정리-누구에게-무엇이-맞을까">정리: 누구에게 무엇이 맞을까</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>상황</th><th>추천</th></tr></thead><tbody><tr><td>영어 위주, 속도가 최우선, 틀려도 괜찮은 보조 판단</td><td>Laya</td></tr><tr><td>정확도가 중요하고 사용량이 적다</td><td>Jev 무료판 (끝날 때를 대비한 유료 전환 준비)</td></tr><tr><td>정확도가 중요하고 미리 계산해 둘 수 있다, GPU 12GB</td><td><strong>Kev-4B + 하루 한 번 캐시</strong></td></tr><tr><td>1초 이내로 빠른 판정이 필요하다, GPU 12GB</td><td>JEV-9B 8bit</td></tr><tr><td>실시간으로 Jev급 정확도가 필요하다</td><td>24GB 이상 GPU를 준비하거나 유료 Jev</td></tr></tbody></table>
+<p>«무료로 무제한»이라는 말은 맞다. 하지만 <strong>무료인 것과 쓸 만한 것은 다르다.</strong> 내 한국어 데이터에서 Laya는 정확도도, 확신도도 실서비스에 쓰기 어려웠다. 대신 덜 유명한 Kev-4B가 유료 Jev와 같은 수준을 보여 줬다. 로컬 모델을 고를 때는 화제성보다 <strong>내 데이터로 300건만이라도 직접 재 보는 것</strong>을 추천한다.</p>
+<h2 id="한계">한계</h2>
+<ul>
+<li>한국어 장소 콘텐츠 분류라는 한 가지 과제만 측정했다. 짧은 검색어의 의도 분류는 정답 데이터가 없어서 따로 재지 못했다.</li>
+<li>300건 표본이라 정확도마다 ±5%p 정도의 오차가 있다.</li>
+<li>정답은 서비스에서 쓰던 분류값이라, 일부 카테고리(예: «공공명소»와 «공공기관»)는 정의가 서로 겹친다. 남은 오답의 상당수가 이 경계에서 나왔다.</li>
+<li>어떤 모델도 내 데이터로 학습시키지 않았다. 로컬 모델은 재학습이 가능해서, 학습하면 결과가 달라질 수 있다.</li>
+<li>Jev는 무료 한도(하루 약 317번) 때문에 1단계만 측정했다. 2단계로 물으면 호출이 두 배라 하루 한도를 넘는다.</li>
+</ul>
+<h2 id="참고자료">참고자료</h2>
+<ul>
+<li><a href="https://huggingface.co/convaiinnovations/laya">convaiinnovations/laya (Hugging Face)</a></li>
+<li><a href="https://mer.vin/news/laya-the-33ms-open-source-decision-model-beating-jev/">Laya: The 33ms Open-Source Decision Model Beating Jev</a></li>
+<li><a href="https://shop.zimaspace.com/blogs/product-comparisons/jev-vs-laya-decision-model">Jev vs Laya: Cloud API vs Local Decision Model</a></li>
+<li><a href="https://huggingface.co/jaredpalmer/kev-0.5b">jaredpalmer/kev (Hugging Face)</a></li>
+<li><a href="https://huggingface.co/autotrust/JEV-9B">autotrust/JEV-9B (Hugging Face)</a></li>
+<li><a href="https://aimultiple.com/decision-models">AIM-Decision: Jev vs Kev vs LLMs (aimultiple)</a></li>
+<li><a href="https://essamamdani.com/blog/jev-vs-tev1-laya-system-one-decision-models-2026">Jev vs Tev1 vs Laya: The 2026 Guide to AI Decision Models</a></li>
+<li><a href="https://opencode.ai/docs/zen/">OpenCode Zen 문서</a></li>
+<li><a href="https://docs.typesafe.ai/introduction/quickstart">TypeSafe AI Quick start</a></li>
+</ul></article><hr class="my-8 border-dashed"><div id="btt-btn-container" class="fixed inset-e-4 bottom-8 z-50 md:sticky md:inset-e-auto md:float-end md:me-1 translate-y-14 opacity-0 transition duration-500"><button data-button="back-to-top" class="group bg-background relative px-2 py-1 size-14 rounded-full shadow-xl md:h-8 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none md:bg-background/35 md:bg-clip-padding md:backdrop-blur-lg"><span id="progress-indicator" class="absolute inset-0 -z-10 block size-14 scale-110 rounded-full bg-transparent md:hidden md:h-8 md:rounded-md"></span><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block rotate-90 md:hidden" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 12h14M5 12l6 6M5 12l6-6" /></svg><span class="group-hover:text-accent sr-only text-sm md:not-sr-only"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M12 5v14M16 9l-4-4M8 9l4-4" /></svg>맨 위로</span></button></div><script data-astro-rerun>
+  function backToTop() {
+    const rootElement = document.documentElement;
+    const btnContainer = document.querySelector("#btt-btn-container");
+    const backToTopBtn = document.querySelector("[data-button='back-to-top']");
+    const progressIndicator = document.querySelector("#progress-indicator");
+
+    if (!rootElement || !btnContainer || !backToTopBtn || !progressIndicator)
+      return;
+
+    backToTopBtn.addEventListener("click", () => {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    });
+
+    let lastVisible = null;
+    function handleScroll() {
+      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
+      const scrollTop = rootElement.scrollTop;
+      const scrollPercent = Math.floor((scrollTop / scrollTotal) * 100);
+
+      progressIndicator.style.setProperty(
+        "background-image",
+        `conic-gradient(var(--accent), var(--accent) ${scrollPercent}%, transparent ${scrollPercent}%)`
+      );
+
+      const isVisible = scrollTop / scrollTotal > 0.3;
+
+      if (isVisible !== lastVisible) {
+        btnContainer.classList.toggle("opacity-100", isVisible);
+        btnContainer.classList.toggle("translate-y-0", isVisible);
+        btnContainer.classList.toggle("opacity-0", !isVisible);
+        btnContainer.classList.toggle("translate-y-14", !isVisible);
+        lastVisible = isVisible;
+      }
+    }
+
+    let ticking = false;
+    document.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  }
+  backToTop();
+</script><ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8"><li><a data-astro-transition-scope="astro-bztu2lml-1" href="/tags/ai/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg>ai</a></li><li><a data-astro-transition-scope="astro-bztu2lml-2" href="/tags/llm/" class="flex items-center gap-0.5 border-foreground border-b-2 border-dashed hover:border-accent hover:text-accent hover:-mt-0.5 focus-visible:text-accent focus-visible:border-none text-sm"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="opacity-80 size-4" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 9h14M5 15h14M11 4 7 20M17 4l-4 16" /></svg>llm</a></li></ul><div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start"><span class="italic">이 글 공유하기:</span><div class="text-center"><a href="https://www.facebook.com/sharer.php?u=https://kabkee.github.io/posts/local-decision-model-laya-jev-kev/" title="Facebook에 공유하기" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M7 10v4h3v7h4v-7h3l1-4h-4V8a1 1 0 0 1 1-1h3V3h-3a5 5 0 0 0-5 5v2z" /></svg><span class="sr-only">Facebook에 공유하기</span></a><a href="https://x.com/intent/post?url=https://kabkee.github.io/posts/local-decision-model-laya-jev-kev/" title="X에 공유하기" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="m4 4 11.733 16H20L8.267 4zM4 20l6.768-6.768m2.46-2.46L20 4" /></svg><span class="sr-only">X에 공유하기</span></a><a href="mailto:?subject=See%20this%20post&amp;body=https://kabkee.github.io/posts/local-decision-model-laya-jev-kev/" title="이메일로 공유하기" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="m3 7 9 6 9-6" /></svg><span class="sr-only">이메일로 공유하기</span></a></div></div><hr class="my-8 border-dashed"><div data-pagefind-ignore class="my-8 grid grid-cols-1 gap-6 sm:grid-cols-2"><a href="/posts/nodejs-php-session-parser/" class="flex w-full gap-1 hover:opacity-75"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block flex-none rtl:rotate-180" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M5 12h14M5 12l6 6M5 12l6-6" /></svg><div><span>이전 글</span><div class="text-accent/85 text-sm">Node.js에서 PHP 세션 파싱하기: MySQL에 저장된 세션을 JavaScript 객체로</div></div></a></div></main><footer class="app-layout mt-auto"><div class="border-border flex flex-col items-center justify-between border-t py-6 sm:flex-row-reverse sm:py-4"><div class="flex flex-wrap items-center gap-1"><a href="https://github.com/kabkee" title="Kabkee.github.io on Github" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" /></svg><span class="sr-only">Kabkee.github.io on Github</span></a><a href="mailto:kabkee@live.com" title="Send an email to Kabkee.github.io" class="group inline-flex items-center gap-1 hover:text-accent p-2 hover:rotate-6 sm:p-1"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" /><path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="m3 7 9 6 9-6" /></svg><span class="sr-only">Send an email to Kabkee.github.io</span></a></div><div class="my-2 flex flex-col items-center gap-2 sm:items-start"><ul class="flex flex-wrap justify-center gap-x-4 text-sm"><li><a href="/about/" class="hover:text-accent opacity-80">소개</a></li><li><a href="/privacy/" class="hover:text-accent opacity-80">개인정보처리방침</a></li><li><a href="/contact/" class="hover:text-accent opacity-80">문의</a></li></ul><div class="flex flex-col items-center whitespace-nowrap sm:flex-row"><span>Copyright &#169; 2026</span><span class="hidden sm:inline">&nbsp;|&nbsp;</span><span>All rights reserved.</span></div></div></div></footer><script type="module">var e=`theme`,t=`light`,n=`dark`;function r(){return localStorage.getItem(e)||(window.matchMedia(`(prefers-color-scheme: dark)`).matches?n:t)}var i=window.__theme?.value??r();function a(){localStorage.setItem(e,i),o()}function o(){let e=document.firstElementChild;e?.setAttribute(`data-theme`,i),e?.classList.toggle(`dark`,i===n),document.querySelector(`#theme-btn`)?.setAttribute(`aria-label`,i);let t=window.getComputedStyle(document.body).backgroundColor;document.querySelector(`meta[name='theme-color']`)?.setAttribute(`content`,t)}function s(){o(),document.querySelector(`#theme-btn`)?.addEventListener(`click`,()=>{i=i===t?n:t,a()})}s(),document.addEventListener(`astro:after-swap`,s),document.addEventListener(`astro:before-swap`,e=>{let t=document.querySelector(`meta[name='theme-color']`)?.getAttribute(`content`);t&&e.newDocument.querySelector(`meta[name='theme-color']`)?.setAttribute(`content`,t)}),window.matchMedia(`(prefers-color-scheme: dark)`).addEventListener(`change`,({matches:e})=>{i=e?n:t,a()});</script></body></html><script data-astro-rerun>
+  function createProgressBar() {
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    progressContainer.appendChild(progressBar);
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  function updateScrollProgress() {
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+    });
+  }
+  updateScrollProgress();
+
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ms-2 no-underline opacity-75 md:opacity-0 md:group-hover:opacity-100 md:focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const computedStyle = getComputedStyle(codeBlock);
+      const hasFileNameOffset =
+        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+
+      const topClass = hasFileNameOffset
+        ? "top-(--file-name-offset)"
+        : "-top-3";
+
+      const copyButton = document.createElement("button");
+      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Accessible image lightbox for article images. */
+  function initLightbox() {
+    const article = document.getElementById("article");
+    if (!article) return;
+
+    const prefersReducedMotion = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let overlay = null;
+    let lastFocused = null;
+
+    // Defer attribute mutations so they don't push the LCP timestamp.
+    // Event listeners below use delegation and don't need the attributes to exist yet.
+    requestAnimationFrame(() => {
+      const images = Array.from(article.querySelectorAll("img"));
+      for (const image of images) {
+        if (image.closest("a")) continue;
+        image.setAttribute("role", "button");
+        image.setAttribute("tabindex", "0");
+        image.setAttribute("aria-haspopup", "dialog");
+        image.setAttribute(
+          "aria-label",
+          image.alt ? `Zoom image: ${image.alt}` : "Zoom image"
+        );
+      }
+    });
+
+    function open(src, alt, trigger) {
+      if (overlay) return;
+      lastFocused = trigger ?? document.activeElement;
+
+      overlay = document.createElement("div");
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute(
+        "aria-label",
+        alt ? `Image preview: ${alt}` : "Image preview"
+      );
+      overlay.className =
+        "fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-200 motion-reduce:transition-none";
+
+      const closeButton = document.createElement("button");
+      closeButton.type = "button";
+      closeButton.setAttribute("aria-label", "Close image preview");
+      closeButton.className =
+        "absolute end-4 top-4 rounded p-2 text-3xl leading-none text-white";
+      closeButton.innerHTML = "&#10005;";
+      closeButton.addEventListener("click", close);
+
+      const image = document.createElement("img");
+      image.src = src;
+      image.alt = "";
+      image.className =
+        "max-h-[90dvh] max-w-[90dvw] cursor-default object-contain";
+
+      overlay.append(closeButton, image);
+      overlay.addEventListener("click", e => {
+        if (e.target === overlay && currentScale <= 1) close();
+      });
+
+      let currentScale = 1;
+      let translateX = 0;
+      let translateY = 0;
+      let initialDist = 0;
+      let initialScale = 1;
+      let panStartX = 0;
+      let panStartY = 0;
+      let panStartTranslateX = 0;
+      let panStartTranslateY = 0;
+      let lastTapTime = 0;
+
+      function applyTransform() {
+        image.style.transform = `scale(${currentScale}) translate(${translateX}px, ${translateY}px)`;
+      }
+
+      function resetTransform() {
+        currentScale = 1;
+        translateX = 0;
+        translateY = 0;
+        image.style.transform = "";
+      }
+
+      overlay.addEventListener(
+        "touchstart",
+        e => {
+          const t = e.touches;
+          if (t.length === 2) {
+            initialDist = Math.hypot(
+              t[1].clientX - t[0].clientX,
+              t[1].clientY - t[0].clientY
+            );
+            initialScale = currentScale;
+          } else if (t.length === 1) {
+            const now = Date.now();
+            if (now - lastTapTime < 300) {
+              e.preventDefault();
+              if (currentScale > 1) {
+                resetTransform();
+              } else {
+                currentScale = 2;
+                translateX = 0;
+                translateY = 0;
+                applyTransform();
+              }
+              lastTapTime = 0;
+              panStartX = t[0].clientX;
+              panStartY = t[0].clientY;
+              panStartTranslateX = translateX;
+              panStartTranslateY = translateY;
+            } else {
+              lastTapTime = now;
+              if (currentScale > 1) {
+                panStartX = t[0].clientX;
+                panStartY = t[0].clientY;
+                panStartTranslateX = translateX;
+                panStartTranslateY = translateY;
+              }
+            }
+          }
+        },
+        { passive: false }
+      );
+
+      overlay.addEventListener(
+        "touchmove",
+        e => {
+          const t = e.touches;
+          if (t.length === 2) {
+            e.preventDefault();
+            const dist = Math.hypot(
+              t[1].clientX - t[0].clientX,
+              t[1].clientY - t[0].clientY
+            );
+            currentScale = Math.min(
+              4,
+              Math.max(1, initialScale * (dist / initialDist))
+            );
+            applyTransform();
+          } else if (t.length === 1) {
+            if (currentScale > 1) {
+              e.preventDefault();
+              translateX =
+                panStartTranslateX + (t[0].clientX - panStartX) / currentScale;
+              translateY =
+                panStartTranslateY + (t[0].clientY - panStartY) / currentScale;
+              const maxX = Math.max(
+                0,
+                (image.clientWidth - overlay.clientWidth / currentScale) / 2
+              );
+              const maxY = Math.max(
+                0,
+                (image.clientHeight - overlay.clientHeight / currentScale) / 2
+              );
+              translateX = Math.min(maxX, Math.max(-maxX, translateX));
+              translateY = Math.min(maxY, Math.max(-maxY, translateY));
+              applyTransform();
+            } else {
+              e.preventDefault();
+            }
+          }
+        },
+        { passive: false }
+      );
+
+      overlay.addEventListener("touchend", e => {
+        if (e.touches.length === 0 && currentScale <= 1.05) {
+          resetTransform();
+        }
+      });
+
+      overlay.addEventListener("touchcancel", e => {
+        if (e.touches.length === 0 && currentScale <= 1.05) {
+          resetTransform();
+        }
+      });
+
+      document.body.appendChild(overlay);
+      document.body.style.overflow = "hidden";
+      document.addEventListener("keydown", onKeyDown);
+      window.__closeLightbox = close;
+
+      requestAnimationFrame(() => overlay?.classList.add("opacity-100"));
+      closeButton.focus();
+    }
+
+    function close() {
+      if (!overlay) return;
+      const el = overlay;
+      overlay = null;
+      window.__closeLightbox = null;
+
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+      lastFocused?.focus();
+      lastFocused = null;
+
+      if (prefersReducedMotion()) {
+        el.remove();
+        return;
+      }
+      const remove = () => el.remove();
+      el.addEventListener("transitionend", remove, { once: true });
+      setTimeout(remove, 250); // fallback in case transitionend never fires
+      el.classList.remove("opacity-100");
+    }
+
+    function onKeyDown(e) {
+      if (e.key === "Escape") {
+        close();
+      } else if (e.key === "Tab") {
+        trapFocus(e);
+      }
+    }
+
+    // Keep keyboard focus inside the open dialog.
+    function trapFocus(e) {
+      if (!overlay) return;
+      const focusables = overlay.querySelectorAll(
+        'a[href], button, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+
+    function triggerFromEvent(e) {
+      const image = e.target.closest("img");
+      if (!image || !article.contains(image) || image.closest("a")) return null;
+      return image;
+    }
+
+    function activate(image) {
+      open(image.currentSrc || image.src, image.alt, image);
+    }
+
+    article.addEventListener("click", e => {
+      const image = triggerFromEvent(e);
+      if (!image) return;
+      e.preventDefault();
+      activate(image);
+    });
+
+    article.addEventListener("keydown", e => {
+      if (e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+      const image = triggerFromEvent(e);
+      if (!image) return;
+      e.preventDefault();
+      activate(image);
+    });
+  }
+  initLightbox();
+
+  if (!window.__lightboxSwapBound) {
+    window.__lightboxSwapBound = true;
+    document.addEventListener("astro:before-swap", () =>
+      window.__closeLightbox?.()
+    );
+  }
+
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>
